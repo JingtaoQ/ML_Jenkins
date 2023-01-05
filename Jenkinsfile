@@ -10,7 +10,7 @@ pipeline {
         stage('Testing') {
             steps {
                 
-              sh 'python -m unitest'
+              sh 'python3 -m unitest'
             }
         }
         stage('Deploying'){
