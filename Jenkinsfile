@@ -5,7 +5,7 @@ pipeline {
         stage('Building') {
             steps {
               sh 'pip3 install -r requirements.txt'
-              sh 'app.py'
+              sh 'python3 app.py'
             }
         }
         stage('Testing') {
