@@ -5,11 +5,12 @@ pipeline {
         stage('Building') {
             steps {
               sh 'pip3 install -r requirements.txt'
+              sh 'app.py'
             }
         }
         stage('Testing') {
             steps {
-              sh 'python -m test_main.py'
+              sh 'python -m unittest test_main.py'
             }
         }
         stage('Deploying'){
