@@ -15,9 +15,12 @@ pipeline {
         stage('Deploying'){
             steps {
               sh 'docker image build -t project0117/jenkins:latest .'
-              sh 'docker run -p 8081:8080 project0117/jenkins'
             }
         }
+        stage('Running'){
+            steps{
+              sh 'docker run --rm project0117/jenkins'
+            }}
     }
   triggers{
        githubPush()
