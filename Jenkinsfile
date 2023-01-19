@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Testing') {
             steps {
-              sh 'python -m pytest'
+              sh 'python -m test_main.py'
             }
         }
         stage('Deploying'){
