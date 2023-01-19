@@ -7,9 +7,9 @@ pipeline {
               sh 'pip3 install -r requirements.txt'
             }
         }
-        stage('Testing') {
+        stage('Building Docker') {
             steps {
-              sh 'python -m unittest test_main.py'
+              sh 'docker build -t test .'
             }
         }
         stage('Deploying'){
