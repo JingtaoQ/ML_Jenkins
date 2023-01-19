@@ -14,7 +14,8 @@ pipeline {
         }
         stage('Deploying'){
             steps {
-              sh 'docker build -t jingtaoqu/project0117:latest .'
+              sh 'docker image build -t jenkins .'
+              sh 'docker run -d -p 5000:5000 jenkins'
             }
         }
     }
