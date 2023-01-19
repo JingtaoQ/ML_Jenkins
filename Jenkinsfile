@@ -1,30 +1,13 @@
-pipeline {
-    agent {
-       docker {
-       image 'maven:3.8.7-eclipse-temurin-11'
-       args '-v $HOME/.m2:/root/.m2'
-       }
+pipeline{
+    agent any
+    tools{
+       maven 'maven_3_8_7'
     }
-
-    stages {
-        stage('Building') {
-            steps {
-              sh 'pip3 install -r requirements.txt'
-            }
-        }
-        stage('Testing') {
-            steps {
-              sh 'python3 -m unittest'
-            }
-        }
-        stage('Deploying'){
-            steps {
-              sh 'docker image build -t jenkins .'
-              sh 'docker run -d -p 5000:5000 jenkins'
-            }
+     stages{
+        stages('Build Maven'){
+            steps{
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: '1234', url: 'https://github.com/JingtaoQ/ML_Jenkins']])
+                sh 'mvn clean install'
         }
     }
-  triggers{
-       githubPush()
-  }
 }
