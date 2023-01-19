@@ -14,8 +14,8 @@ pipeline {
         }
         stage('Deploying'){
             steps {
-              sh 'docker image build -t jenkins .'
-              sh 'docker run -p 8081:8080 jenkins'
+              sh 'docker image build -t project0117/jenkins:latest .'
+              sh 'docker run -p 8081:8080 project0117/jenkins'
             }
         }
     }
