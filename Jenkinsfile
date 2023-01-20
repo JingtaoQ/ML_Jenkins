@@ -24,7 +24,8 @@ pipeline {
         stage('Login'){
             steps{
                 withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
-                    sh 'echo login -u project0117 -p ${dockerhubpwd}'
+                
+                    bat "docker push project0117/jenkins:latest"
                 }
                     sh 'docker push project0117/jenkins:latest'
             }
