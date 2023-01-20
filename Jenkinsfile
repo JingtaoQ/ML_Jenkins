@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('project0117')
+    }
 
     stages {
         stage('Building') {
@@ -11,18 +15,27 @@ pipeline {
             steps {
               sh 'python3 test_main.py '
             }
-        }
+        }  
         stage('Deploying'){
             steps {
-              sh 'docker image build -t project0117/jenkins:latest .'
+              sh 'docker build -t project0117/jenkins:latest .'
             }
         }
-        stage('Running'){
+        stage('Login'){
             steps{
-              sh 'docker run -p 8000:8000 project0117/jenkins'
-            }}
+                sh 'echo $DOCKERHUB_CRENTIALS_PSW | docker login -u $ DOCKERHUB_CREDENTIALS_USR --password-stdin'
+            }
+        }
+        
+        stage('Pushing'){
+            steps{
+                sh 'docker push project0117/jenkins:latest'
+            }
+        }
     }
-  triggers{
-       githubPush()
+  post{
+      always{
+         sh 'docker logout'
+      }
   }
 }
