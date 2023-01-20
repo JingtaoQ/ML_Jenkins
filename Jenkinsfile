@@ -21,15 +21,15 @@ pipeline {
               sh 'docker build -t project0117/jenkins:latest .'
             }
         }
-        stage('Login'){
+        stage('Push image to Hub'){
             steps{
-                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-            }
-        }
-        
-        stage('Pushing'){
-            steps{
-                sh 'docker push project0117/jenkins:latest'
+                script{
+                    withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
+                    sh 'docker login -u project0117 -p ${dockerhub}'
+
+}
+                    sh 'docker push project0117/jenkins'
+                }
             }
         }
     }
