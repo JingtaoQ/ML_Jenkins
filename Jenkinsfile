@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Push image to Hub'){
             steps{
-                withDockerRegistry([credentialsID:"docker-hub", url:""]){
+                withDockerRegistry([credentialsId:"docker-hub", url:""]){
                     sh 'docker push project0117/jenkins:latest'
                 }
             }
