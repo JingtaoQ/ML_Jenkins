@@ -1,5 +1,4 @@
 FROM python:3.8-slim-buster
-FROM alpine:1.0.14
 ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 
