@@ -23,10 +23,7 @@ pipeline {
         }
         stage('Login'){
             steps{
-                withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
-                sh 'docker login -u project0117 -p ${dockerhubpwd}'
-                }
-                sh 'docker push project0117/jenkins'
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
             }
         }
         
