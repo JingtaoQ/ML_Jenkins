@@ -1,6 +1,8 @@
 pipeline {
     agent any
-    
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('docker-hub')
+    }
 
 
     stages {
@@ -19,14 +21,20 @@ pipeline {
               sh 'docker build -t project0117/jenkins:latest .'
             }
         }
+        stage('Login') {
+
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
+        
         stage('Push image to Hub'){
             steps{
-                withDockerRegistry([credentialsId:"docker-hub", url:""]){
                     sh 'docker push project0117/jenkins:latest'
                 }
             }
         }
-    }
+    
   post{
       always{
          sh 'docker logout'
