@@ -26,7 +26,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
                     sh 'echo login -u project0117 -p ${dockerhubpwd}'
                 }
-                    sh 'docker push latest'
+                    sh 'docker push project0117/jenkins'
             }
         }
         
