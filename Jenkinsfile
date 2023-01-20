@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Running'){
             steps{
-              sh 'docker run -p 5000:5000 project0117/jenkins'
+              sh 'docker run -p 8000:8000 project0117/jenkins'
             }}
     }
   triggers{
