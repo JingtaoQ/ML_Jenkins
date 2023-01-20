@@ -14,11 +14,12 @@ from flask import request
 from flask import render_template
 from flask import url_for
 from flask.json import jsonify
+from waitress import serve
 
 ##########################################################################
 ## Application Setup
 ##########################################################################
-
+ 
 app = Flask(__name__)
 
 ##########################################################################
@@ -70,4 +71,4 @@ def whoami_name(name):
 ##########################################################################
 
 if __name__ == '__main__':
-    app.run()
+    serve(app,host='0.0.0.0', port=8001)
