@@ -32,13 +32,12 @@ pipeline {
             steps{
                 script{
                     withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
-                    sh 'docker login -u project0117 -p ${dockerhub}'
-
-}
+                    sh 'docker login -u project0117 -p ${dockerhub}'}
                     sh 'docker push project0117/jenkins'
                 }
             }
         }
+    }
     
   post{
       always{
