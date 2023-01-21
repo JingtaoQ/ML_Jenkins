@@ -30,7 +30,12 @@ pipeline {
         
         stage('Push image to Hub'){
             steps{
-                    sh 'docker push project0117/jenkins:latest'
+                script{
+                    withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
+                    sh 'docker login -u project0117 -p ${dockerhub}'
+
+}
+                    sh 'docker push project0117/jenkins'
                 }
             }
         }
