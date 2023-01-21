@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Running'){
             steps {
-              sh 'docker run --rm jingtaoqu/jenkins:latest'
+              sh 'docker run -d -p 8003:8080 jingtaoqu/jenkins:latest'
             }
         }	   
         stage('Login') {
