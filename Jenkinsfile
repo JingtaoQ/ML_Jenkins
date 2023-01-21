@@ -21,6 +21,11 @@ pipeline {
               sh 'docker build -t jingtaoqu/jenkins:latest .'
             }
         }
+        stage('Running'){
+            steps {
+              sh 'docker run --rm jingtaoqu/jenkins:latest'
+            }
+        }	   
         stage('Login') {
 
 		steps {
