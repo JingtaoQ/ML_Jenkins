@@ -18,7 +18,7 @@ pipeline {
         }  
         stage('Deploying'){
             steps {
-              sh 'docker build -t project0117/jenkins:latest .'
+              sh 'docker build -t jingtaoqu/jenkins:latest .'
             }
         }
         stage('Login') {
